@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_generator/generate_qr_code.dart';
 import 'package:qr_code_scanner_generator/scan_qr_code.dart';
+import 'package:qr_code_scanner_generator/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'QR code Scanner and Generator',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const MyHomePage(),
+      home: const SplashScreen(),
     );
   }
 }
@@ -35,9 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("QR code scanner and generator"),backgroundColor: Colors.blue,
       ),
-      body:Center(
-        child: Column(
+      body:Container(
+        color: Colors.blue.shade300,
+        height: 100,
+        width: MediaQuery.of(context).size.width,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ElevatedButton(onPressed: (){
               setState(() {
@@ -45,13 +50,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
               });
             }, child: Text("Scan QR code")),
-            SizedBox(height: 40,),
+            SizedBox(width: 20,),
             ElevatedButton(onPressed: (){
               setState(() {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GenerateQrCode()));
 
               });
             }, child: Text("Generate QR Code")),
+
 
           ],
         ),
